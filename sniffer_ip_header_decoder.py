@@ -1,10 +1,11 @@
 import os
+import socket
 import struct
 from ctypes import *
 host="127.0.0.1"
 
 class IP(Structure):
-    _fields_=[
+    _fields_ =[
         ("ihl",     c_ubyte,4),
         ("version", c_ubyte,4),
         ("tos",     c_ubyte),
@@ -15,13 +16,13 @@ class IP(Structure):
         ("protocol_num",c_ubyte),
         ("sum",        c_ushort),
         ("src",        c_ulong),
-        ("dst",        c_ulong),
+        ("dst",        c_ulong)
         ]
     
-    def__new__(self,socket_buffer=None):
-        return self.from_buffer_copy(socket_buffer)
+    def __new__(self, socket_buffer=None):
+        return self.from_buffer_copy(socket_buffer)  
     
-    def__init__(self,socket_buffer=None):
+    def __init__(self,socket_buffer=None):
         
         self.protocol_map={1:"ICMP",6:"TCP",17:"UDP"}
         
